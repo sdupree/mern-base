@@ -7,7 +7,7 @@ export async function signUp(userData) {
 }
 
 export async function login(credentials) {
-  const token = await usersAPI.logIn(credentials);
+  const token = await usersAPI.login(credentials);
   localStorage.setItem('token', token);
   return getUser();
 }
@@ -36,4 +36,9 @@ export function getUser() {
 
   // Return 'user' object if token.
   return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+}
+
+export async function checkToken() {
+  return new Date(await usersAPI.checkToken());
+  // return usersAPI.checkToken().then(dateStr => new Date(dateStr));  // Non-async-await way.
 }
