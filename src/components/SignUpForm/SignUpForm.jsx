@@ -21,13 +21,12 @@ export default class SignUpForm extends Component {
     evt.preventDefault();
     try {
       // Ahh.
-      const fromData = {
+      const formData = {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
       };
       const user= await signUp(formData);
-      console.log(user);
     } catch {
       // Oh my!
       this.setState({error: 'Sign Up Failed - Try Harder!'});
