@@ -3,8 +3,17 @@ import * as usersAPI from './users-api';
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
   localStorage.setItem('token', token);
+  return getUser();
+}
 
-  return token;
+export async function login(credentials) {
+  const token = await usersAPI.logIn(credentials);
+  localStorage.setItem('token', token);
+  return getUser();
+}
+
+export function logOut() {
+  localStorage.removeItem('token');
 }
 
 export function getToken() {
